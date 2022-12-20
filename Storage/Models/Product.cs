@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Storage.Models
 {
@@ -20,9 +21,10 @@ namespace Storage.Models
         [Range(0, 999)]
         public int Price { get; set; }
         [DataType(DataType.Date)]
+        [Display(Name="Order date")]
         public DateTime OrderDate { get; set; }
         [Required]
-        public string Category { get; set; } = string.Empty;
+        public Classification Category { get; set; }
 
         [StringLength(100)]
         public string Shelf { get; set; } = string.Empty;

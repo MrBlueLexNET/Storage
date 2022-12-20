@@ -6,7 +6,7 @@ namespace Storage.Models
     
     public enum Classification
     {
-        None = 0, Dog = 1, Cat = 2, Bird = 4, Rodent = 8,
-        Reptile = 16, Other = 32
+        None = 0, Explosive = 1, Compressed = 2, Pressurized = 4, Flammable = 5,
+        Infectious = 6, Radioactive = 7,  Other = 32
     };
 }

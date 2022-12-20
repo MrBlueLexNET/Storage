@@ -42,14 +42,14 @@ namespace Storage.Controllers
         }
 
         //Search Product by Category
-        public async Task<IActionResult> Search(string searchString)
+        public async Task<IActionResult> Search(string searchString, int? category)
         {
            var product = from m in _context.Product
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                product = product.Where(s => s.Category!.Contains(searchString));
+                product = product.Where(s => (int)s.Category == category);
             }
 
             return View(nameof(Index), await product.ToListAsync());
