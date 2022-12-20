@@ -44,12 +44,7 @@ namespace Storage.Controllers
         //Search Product by Category
         public async Task<IActionResult> Search(string searchString)
         {
-            if (_context.Product == null)
-            {
-                return Problem("Entity set 'Storage.Product'  is null.");
-            }
-
-            var product = from m in _context.Product
+           var product = from m in _context.Product
                          select m;
 
             if (!String.IsNullOrEmpty(searchString))
@@ -65,7 +60,7 @@ namespace Storage.Controllers
         // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -105,7 +100,7 @@ namespace Storage.Controllers
         // GET: Products/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -156,7 +151,7 @@ namespace Storage.Controllers
         // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Product == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -176,10 +171,7 @@ namespace Storage.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Product == null)
-            {
-                return Problem("Entity set 'StorageContext.Product'  is null.");
-            }
+           
             var product = await _context.Product.FindAsync(id);
             if (product != null)
             {
