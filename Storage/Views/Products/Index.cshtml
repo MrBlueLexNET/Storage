@@ -6,81 +6,23 @@
 
 <h1>Index</h1>
 
-
-<div>
-    <h4>Product Search by Category</h4>
-    <hr />
-    <form asp-controller="Products" asp-action="Search">
-        <p>
-            Name: <input type="text" name="SearchString" />
-            @*<input class="btn" type="submit" value="Search" />*@
-            Category: <input type="text" name="Category" />
-            <button class="btn" value="Search"><i class="fa fa-search"></i>&emsp;Search</button>
-        </p>
-    </form>
-</div>
-
-
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OrderDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Shelf)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Count)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OrderDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Shelf)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Count)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<div>
+    <h4>Product Search by Name and Category</h4>
+    <hr />
+    <form asp-controller="Products" asp-action="Search" method="get">
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" name="SearchString" placeholder="Search on product name... "/>
+            <select class="form-control" name="Category" asp-items="@Html.GetEnumSelectList<Classification>()">
+                <option selected="selected" value="">Please select category</option>
+            </select>
+            <button class="btn" value="Search"><i class="fa fa-search"></i>&emsp;Search</button>
+        </div>
+    </form>
+</div>
+
+<partial name="ProductTablePartial" />
+
