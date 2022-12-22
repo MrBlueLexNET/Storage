@@ -41,7 +41,7 @@ namespace Storage.Controllers
             return View(nameof(List), productListModel);
         }
 
-        //Search Product by Category
+        //Search Product Name and Category
         public async Task<IActionResult> Search(string searchString, int? category)
         {
            
