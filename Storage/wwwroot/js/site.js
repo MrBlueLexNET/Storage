@@ -2,3 +2,23 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
+
+//Add a closure named mainController that has the function pleaseWait() in it
+var mainController = (function () {
+    // ************************************
+    // Private Functions
+    // ************************************
+    function pleaseWait() {
+        $("#pleaseWait").removeClass("d-none");
+        $("header").addClass("pleaseWaitArea");
+        $("main").addClass("pleaseWaitArea");
+        $("footer").addClass("pleaseWaitArea");
+    }
+
+    // ************************************
+    // Public Functions
+    // ************************************
+    return {
+        "pleaseWait": pleaseWait
+    }
+})();

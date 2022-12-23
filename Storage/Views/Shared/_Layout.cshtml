@@ -32,10 +32,18 @@
         </nav>
     </header>
     <div class="container">
+        <div id="pleaseWait"
+             class="pleaseWaitMessage d-none">
+        <h4>
+             <span id="theWaitMessage">
+             Please wait while loading...
+            </span>
+        </h4>
+         </div>
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
+</div>
 
     <footer class="border-top footer text-muted">
         <div class="container">

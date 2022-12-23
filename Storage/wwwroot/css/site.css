@@ -27,7 +27,26 @@ body {
     cursor: pointer; /* Mouse pointer on hover */
 }
 
-    /* Darker background on mouse-over */
-    .btn:hover {
-        background-color: RoyalBlue;
-    }
+/* Darker background on mouse-over */
+.btn:hover {
+       background-color: RoyalBlue;
+}
+
+/* Add two CSS rules to let the user know something is happening */
+.pleaseWaitArea {
+    background: gray;
+    opacity: .5;
+}
+
+.pleaseWaitMessage {
+    border: black solid .5em;
+    opacity: 1;
+    text-align: center;
+    background: white;
+    z-index: 99;
+    padding: 3em;
+    position: absolute;
+    left: 50%;
+    top: 6em;
+    transform: translate(-50%, 0);
+}
