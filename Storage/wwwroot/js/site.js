@@ -8,8 +8,17 @@ var mainController = (function () {
     // ************************************
     // Private Functions
     // ************************************
-    function pleaseWait(ctl) {
-        // Was a control passed in?
+    //Disable Links and Buttons Using jQuery
+    function disableAllClicks() {
+        $("a").css("cursor", "arrow").click(false);
+        $("input[type='button']").attr("disabled", "disabled");
+        $("button").attr("disabled", "disabled");
+    }
+   
+       function pleaseWait(ctl) {
+
+          
+           // Was a control passed in?
         if (ctl) {
             // Look for a data-waitmsg="message"
             // on the control clicked on
@@ -23,12 +32,19 @@ var mainController = (function () {
         $("header").addClass("pleaseWaitArea");
         $("main").addClass("pleaseWaitArea");
         $("footer").addClass("pleaseWaitArea");
-    }
+        //disableAllClicks();
+        }
 
     // ************************************
     // Public Functions
     // ************************************
+    
+
+
     return {
         "pleaseWait": pleaseWait
+        //"disableAllClicks": disableAllClicks
+       
     }
 })();
+

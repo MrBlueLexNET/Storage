@@ -4,25 +4,75 @@
     ViewData["Title"] = "Index";
 }
 
+@*Moved to _layout since it will be included on all pages*@
+@*<h4>
+    <span id="theWaitMessage">
+        Please wait while loading...
+    </span>
+    &nbsp;
+    <i class="fas fa-cog fa-spin"
+       style="z-index: 99">
+    </i> 
+</h4>*@
+
+
 <h1>Index</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
 
+
 <div>
     <h4>Product Search by Name and Category</h4>
     <hr />
+               
     <form asp-controller="Products" asp-action="Search" method="get">
-        <div class="input-group mb-3">
-            <input class="form-control" type="text" name="SearchString" placeholder="Search on product name... "/>
+          <div class="input-group mb-3">
+            <input class="form-control" 
+            type="text" 
+            name="SearchString" 
+            placeholder="Search on product name... " 
+            />
             <select class="form-control" name="Category" asp-items="@Html.GetEnumSelectList<Classification>()">
                 <option selected="selected" value="">Please select category</option>
             </select>
-            <button class="btn" value="Search"><i class="fa fa-search"></i>&emsp;Search</button>
+            <button class="btn" value="Search" data-waitmsg="Please wait while searching for specified product..."
+                    onclick="mainController.pleaseWait(this);"><i class="fa fa-search"></i>&emsp;Search
+            </button>
         </div>
     </form>
 </div>
 
+<div>
+    <h4>Product Search by Shelf</h4>
+    <hr />
+    <form asp-controller="Products" asp-action="Search" method="get">
+        <div class="input-group mb-3">
+            <input class="form-control" type="text" name="SearchString" placeholder="Search on product name... "/>
+            <button class="btn" value="Search" data-waitmsg="Please wait while searching for products in shelf"
+                    onclick="mainController.pleaseWait(this);"><i class="fa fa-search"></i>&emsp;Search
+            </button>
+        </div>
+    </form>
+</div>
+
+@*<partial name="ProductSearchAccordionPartial" />*@
+
+
+
 <partial name="ProductTablePartial" />
 
+@section Scripts {
+    <script>
+        'use strict';
+        $(document).ready(function () {
+
+            $("form").submit(function () {
+                mainController.pleaseWait(this);
+            });
+
+        });
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}
